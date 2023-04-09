@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="container">
-      <form action="/" class="decor">
+      <form action="/" class="decor" id="user-form">
         <div class="form-inner">
           <h1>Register Here</h1>
           <input type="text" id="username" placeholder="enter username" />
@@ -76,6 +76,9 @@
 
       const db = getDatabase();
 
+      //Getting hold of the form to prevent default submission
+      const form = document.getElementById("user-form");
+
       //CRUD Operations here:
       var insertUser = document.querySelector("#insert");
       var updateUser = document.querySelector("#update");
@@ -93,6 +96,12 @@
       var findUserName = document.querySelector("#findusername");
       var findUserEmail = document.querySelector("#finduseremail");
       var findUserMessage = document.querySelector("#findusermessage");
+
+
+      //preventing default submissions
+      form.addEventListener((e)=>{
+        e.preventDefault();
+      });
 
       function InsertUser() {
         set(ref(db, "user/" + userName.value), {
