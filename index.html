@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact us</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet"
+    />
+    <!-- Link to the custom css -->
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div id="container">
+      <form action="/" class="decor">
+        <div class="form-inner">
+          <h1>Register Here</h1>
+          <input type="text" id="username" placeholder="enter username" />
+          <input type="email" id="emailid" placeholder="enter email" />
+          <textarea
+            rows="5"
+            id="message"
+            placeholder="enter message"
+          ></textarea>
+        </div>
+      </form>
+      <div class="search">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="search for user by user name"
+        />
+        <button id="search-btn">Search</button>
+      </div>
+    </div>
+    <div id="crud-btn">
+      <button id="insert">ADD USER</button>
+      <button id="update">UPDATE USER</button>
+      <button id="delete">DELETE USER</button>
+    </div>
+    <div id="retrieved-details">
+      <h3 id="findusername" style="color: #fff"></h3>
+      <h3 id="finduseremail" style="color: #fff"></h3>
+      <h3 id="findusermessage" style="color: #fff"></h3>
+    </div>
+
+    <!-- Firebase CDN link -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDNUEHBMEt6tiOyedxvPZz2WlMAGJ2C8Xk",
+        authDomain: "userform-da246.firebaseapp.com",
+        databaseURL: "https://userform-da246-default-rtdb.firebaseio.com",
+        projectId: "userform-da246",
+        storageBucket: "userform-da246.appspot.com",
+        messagingSenderId: "363516809750",
+        appId: "1:363516809750:web:c7687b6741828aa5ee5b37",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import {
+        getDatabase,
+        set,
+        get,
+        update,
+        remove,
+        ref,
+        child,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+      const db = getDatabase();
+
+      //CRUD Operations here:
+      var insertUser = document.querySelector("#insert");
+      var updateUser = document.querySelector("#update");
+      var deleteUser = document.querySelector("#delete");
+      var insertUser = document.querySelector("#insert");
+
+      //Getting of all the user entered details:
+      var emailId = document.querySelector("#emailid");
+      var userName = document.querySelector("#username");
+      var message = document.querySelector("#message");
+
+      //Retrieving the user details:
+      var searchUser = document.querySelector("#search-input");
+      var searchBtn = document.querySelector("#search-btn");
+      var findUserName = document.querySelector("#findusername");
+      var findUserEmail = document.querySelector("#finduseremail");
+      var findUserMessage = document.querySelector("#findusermessage");
+
+      function InsertUser() {
+        set(ref(db, "user/" + userName.value), {
+          UserName: userName.value,
+          EmailId: emailId.value,
+          Message: message.value,
+        })
+          .then(() => {
+            alert("Details submitted successfully !");
+          })
+          .then((error) => {
+            alert(error);
+          });
+      }
+      function FindData() {
+        const referenceDb = ref(db);
+
+        get(child(referenceDb, "user/" + searchUser.value))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              findUserEmail.innerHTML = "UserName: " + snapshot.val().UserName;
+              findUserName.innerHTML = "EmailId: " + snapshot.val().EmailId;
+              findUserMessage.innerHTML = "Message: " + snapshot.val().Message;
+
+              console.log("Available");
+            } else {
+              console.log("Not available");
+              document.write(`The user you're looking for does not exist`)
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            console.log("something wrong");
+          });
+      }
+
+      function UpdateUser() {
+        update(ref(db, "user/" + userName.value),{
+          UserName: userName.value,
+          EmailId: emailId.value,
+          Message: message.value
+        }).then(()=>{
+          alert('Details updated successfully');
+        }).catch((error)=>{
+          alert(error);
+        })
+      }
+      function DeleteUser() {
+        remove(ref(db, "user/" + userName.value)).then(()=>{
+          alert("User data removed successfully !");
+        }).catch((error)=>{
+          alert(error);
+        });
+      }
+
+      insertUser.addEventListener("click", InsertUser);
+      searchBtn.addEventListener("click", FindData);
+      updateUser.addEventListener("click", UpdateUser);
+      deleteUser.addEventListener("click", DeleteUser);
+      //searchUser.addEventListener('click', FindData);
+    </script>
+    <!-- Custome js link -->
+    <script src="./js/main.js"></script>
+  </body>
+</html>
