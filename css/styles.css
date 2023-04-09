@@ -16,8 +16,9 @@ textarea {
   outline: none;
 }
 #container {
-  width: 100%;
-  max-width: 100%;margin-top: 10em;
+  width: 80%;
+  max-width: 80%;
+  margin-top: 10em;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
