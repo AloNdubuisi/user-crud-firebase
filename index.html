@@ -167,9 +167,9 @@
               findUserMessage.innerHTML = "Message: " + snapshot.val().Message;
               findUserId.innerHTML = "UserId: " + snapshot.val().UserId;
 
-              alert("Available");
+              alert("User is Available");
             } else {
-              alert("Not available");
+              alert("Not such User Found");
               //document.write(`The user you're looking for does not exist`);
             }
           })
@@ -180,7 +180,7 @@
       }
 
       function UpdateUser() {
-        update(ref(db, "user/" + userId.value), {
+        update(ref(db, "user/" + userName.value), {
           UserName: userName.value,
           EmailId: emailId.value,
           Message: message.value,
@@ -188,7 +188,7 @@
           Password: password.value
         })
           .then(() => {
-            alert("Details updated successfully");
+            alert("User is updated successfully");
           })
           .catch((error) => {
             alert(error);
