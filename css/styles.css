@@ -18,7 +18,8 @@ body{
   margin-top: 3em;
 }
 input{
-  font-size: 1.3em;
+  font-size: 2em;
+  padding: 15px;
 }
 div.crud-btns{
   margin: 2em;
