@@ -21,17 +21,10 @@
         <fieldset>
           <div class="form-group">
             <label for="userid" class="form-label mt-4 fw-bolder">USER ID:</label>
-            <input
-              class="form-control"
-              id="userid" placeholder="Enter Your ID"
-            />
+            <input type="number" class="form-control" id="userid" placeholder="Enter Your ID"/>
           <div class="form-group">
             <label for="username" class="form-label mt-4 fw-bolder">UserName: </label>
-            <input
-              type="text"
-              class="form-control"
-              id="username" placeholder="Enter Your username"
-            />
+            <input type="text" class="form-control" id="username" placeholder="Enter Your username"/>
           </div>
           
           </div>
@@ -80,14 +73,6 @@
     <!-- Retrieved user details Here -->
     <div class="container">   
       <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">USER ID</th>
-              <th scope="col">USERNAME</th>
-              <th scope="col">EMAIL</th>
-              <th scope="col">MESSAGE DETAILS</th>
-            </tr>
-          </thead>
           <tbody>
             <tr>
               <td scope="row" id="finduserid"></td>
@@ -185,7 +170,7 @@
               console.log("Available");
             } else {
               console.log("Not available");
-              document.write(`The user you're looking for does not exist`);
+              //document.write(`The user you're looking for does not exist`);
             }
           })
           .catch((error) => {
