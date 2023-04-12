@@ -167,15 +167,15 @@
               findUserMessage.innerHTML = "Message: " + snapshot.val().Message;
               findUserId.innerHTML = "UserId: " + snapshot.val().UserId;
 
-              console.log("Available");
+              alert("Available");
             } else {
-              console.log("Not available");
+              alert("Not available");
               //document.write(`The user you're looking for does not exist`);
             }
           })
           .catch((error) => {
-            console.log(error);
-            console.log("something wrong");
+            alert(error);
+            alert("something wrong");
           });
       }
 
