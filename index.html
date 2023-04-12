@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <div class="container mt-3">
+    <div class="container mt-5">
       <div class="input-group mb-3">
       <input type="search" id="search-input" class="form-control p-10" placeholder="Search User by ID">
       <button class="btn btn-secondary " id="search-btn">Search</button>
@@ -180,7 +180,7 @@
       }
 
       function UpdateUser() {
-        update(ref(db, "user/" + userName.value), {
+        update(ref(db, "user/" + userId.value), {
           UserName: userName.value,
           EmailId: emailId.value,
           Message: message.value,
